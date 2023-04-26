@@ -13,9 +13,35 @@ function toggleModal(){
     fade.classList.toggle("hide")
 }
 
+async function loadModal(id){
+    const info = document.getElementById('modal-body')
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`
+    const response = await fetch(url)
+    const pokemon = await response.json()
+    info.innerHTML = `
+    <h2>${pokemon.name}</h2>
+    
+    <img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}">
+
+    <ul>
+        <li>HP ${Math.floor((Math.random() * pokemon.stats[0].base_stat) + 1)}/${pokemon.stats[0].base_stat}</li>
+        <li>XP ${pokemon.base_experience}</>
+        <li>Peso ${(pokemon.weight)/10} kg</li>
+        <li>Altura ${(pokemon.height)/10} m</li>
+    </ul>
+    `
+
+    console.log(pokemon)
+    toggleModal()
+}
+
 const closeModalButton = document.getElementById('close-modal')
 
 closeModalButton.addEventListener('click', ()=>{
+    toggleModal()
+})
+
+fade.addEventListener('click', ()=>{
     toggleModal()
 })
 
@@ -30,7 +56,7 @@ function convertPokemonToLi(pokemon) {
                     ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
 
-                <button id="open-modal" class="btn-modal" onclick="toggleModal()" >Detalhes</button>
+                <button id="open-modal" class="btn-modal" onclick="loadModal(${pokemon.number})">Detalhes</button>
 
                 <img src="${pokemon.photo}"
                      alt="${pokemon.name}">
