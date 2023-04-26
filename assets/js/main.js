@@ -30,7 +30,6 @@ async function loadModal(id){
         <li>Altura ${(pokemon.height)/10} m</li>
     </ul>
     `
-
     console.log(pokemon)
     toggleModal()
 }
@@ -54,10 +53,9 @@ function convertPokemonToLi(pokemon) {
             <div class="detail">
                 <ol class="types">
                     ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
+                    <li><button id="open-modal" class="btn-modal" onclick="loadModal(${pokemon.number})">Detalhes</button></li>
                 </ol>
-
-                <button id="open-modal" class="btn-modal" onclick="loadModal(${pokemon.number})">Detalhes</button>
-
+                
                 <img src="${pokemon.photo}"
                      alt="${pokemon.name}">
             </div>
