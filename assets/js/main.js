@@ -16,12 +16,22 @@ function convertPokemonToLi(pokemon) {
                     ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
 
-                <button id="open-modal">Detalhes</button>
+                <button id="open-modal" class="btn-modal">Detalhes</button>
 
                 <img src="${pokemon.photo}"
                      alt="${pokemon.name}">
             </div>
         </li>
+        <div id="fade" class="hide"></div>
+        <div id="modal"class="hide">
+            <div class="modal-header"
+                <h2>nome</h2>
+                <button id="close-modal" class="btn-modal">Fechar</button>
+            </div>
+            <div class="modal-body">
+                <p>lorem ipsum detalhes do pokemon aqui</>
+            </div>
+        </div>
     `
 }
 
